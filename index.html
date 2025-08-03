@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travelguide Colònia de Sant Jordi</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0077b6" />
+<style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f4f6f9; color: #333; }
+    header { background: linear-gradient(45deg, #0077b6, #0096c7); color: white; text-align: center; padding: 20px; font-size: 1.4em; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+    nav { position: fixed; bottom: 0; width: 100%; display: flex; background: #0077b6; justify-content: space-around; padding: 10px 0; box-shadow: 0 -2px 6px rgba(0,0,0,0.2); }
+    nav a { color: white; text-decoration: none; font-size: 14px; text-align: center; flex: 1; transition: background 0.3s; padding: 5px; }
+    nav a:hover { background: #0096c7; border-radius: 8px; }
+    nav a i { display: block; font-size: 18px; margin-bottom: 4px; }
+    .container { padding: 20px; margin-bottom: 80px; }
+    .tab { display: none; animation: fadeIn 0.4s ease-in-out; }
+    .tab.active { display: block; }
+    h2 { color: #0077b6; margin-bottom: 10px; }
+    ul, ol { margin-left: 20px; }
+    a.btn { display: inline-block; padding: 12px 18px; margin: 8px 0; background: #0077b6; color: white; text-decoration: none; border-radius: 6px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); font-weight: bold; transition: background 0.3s; }
+    a.btn:hover { background: #0096c7; }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registriert'));
+    }
+    function showTab(tabId) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+</head>
+<body>
+<header>Colònia de Sant Jordi – Family Travelguide</header>
+
+<div class="container">
+    <div id="start" class="tab active">
+        <h2>Willkommen</h2>
+        <p>Urlaub vom 04.–14.08.2025<br>Highlights: Strände, Naturpark Cabrera, familienfreundliche Ausflüge.</p>
+    </div>
+
+    <div id="aktivitaeten" class="tab">
+        <h2>Tagesaktivitäten</h2>
+        <ul>
+            <li><b>Playa Es Trenc:</b> Weißer Sand, flach abfallend – ideal für Kinder.</li>
+            <li><b>Playa Es Dolç:</b> Ruhiger Strand, fußläufig vom Hafen.</li>
+            <li><b>Glasboden-Bootstour:</b> 1,5–2 Std. Spaß für Kinder.</li>
+            <li><b>Familienradeln:</b> Colònia → Campos (ebene Wege).</li>
+        </ul>
+    </div>
+
+    <div id="ausfluege" class="tab">
+        <h2>Top 5 Ausflugsziele</h2>
+        <ol>
+            <li>Cabrera Nationalpark – Bootstour & Insel-Erkundung.</li>
+            <li>Aquarium Palma – Indoor, Haifischtunnel.</li>
+            <li>Safari Zoo – Tiere hautnah erleben.</li>
+            <li>Palma City – La Seu Kathedrale, Eis am Plaça Major.</li>
+            <li>Cuevas del Drach – Tropfsteinhöhlen mit Bootskonzert.</li>
+        </ol>
+    </div>
+
+    <div id="essen" class="tab">
+        <h2>Restaurants</h2>
+        <ul>
+            <li><b>Cassai Beach House:</b> Mediterran, Kindergerichte.</li>
+            <li><b>Port Blau:</b> Paella & Hafenblick.</li>
+            <li><b>Gelats Artesans:</b> Perfekt für Eis-Liebhaber.</li>
+        </ul>
+    </div>
+
+    <div id="karte" class="tab">
+        <h2>Karte & Links</h2>
+        <p><a class="btn" href="https://goo.gl/maps/fCzThkp6knP7kxA47" target="_blank">Colònia de Sant Jordi</a></p>
+        <p><a class="btn" href="https://goo.gl/maps/MQyHQFrsAvzj7pkb9" target="_blank">Playa Es Trenc</a></p>
+        <p><a class="btn" href="https://goo.gl/maps/YbJhC2Zt84Kc7g4c9" target="_blank">Cabrera Bootstour</a></p>
+        <p><a class="btn" href="https://goo.gl/maps/GR4hvvhpiWQb6xE58" target="_blank">Aquarium Palma</a></p>
+        <p><a class="btn" href="https://goo.gl/maps/zzNEE8J7G6P2" target="_blank">Cuevas del Drach</a></p>
+    </div>
+</div>
+
+<nav>
+    <a href="#" onclick="showTab('start')"><i class="fas fa-home"></i>Start</a>
+    <a href="#" onclick="showTab('aktivitaeten')"><i class="fas fa-umbrella-beach"></i>Aktivitäten</a>
+    <a href="#" onclick="showTab('ausfluege')"><i class="fas fa-map-marked-alt"></i>Ausflüge</a>
+    <a href="#" onclick="showTab('essen')"><i class="fas fa-utensils"></i>Essen</a>
+    <a href="#" onclick="showTab('karte')"><i class="fas fa-map"></i>Karte</a>
+</nav>
+
+<script>
+    window.addEventListener('offline', () => {
+        alert('Sie sind offline. Einige Inhalte sind möglicherweise nicht verfügbar.');
+    });
+</script>
+
+</body>
+</html>
